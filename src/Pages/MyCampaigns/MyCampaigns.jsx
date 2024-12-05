@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyCampaigns = () => {
     const { user } = useContext(AuthContext)
@@ -70,12 +71,12 @@ const MyCampaigns = () => {
                                 <td className="px-4 py-2 border">{campaign.type}</td>
                                 <td className="px-4 py-2 border">${campaign.minDonation}</td>
                                 <td className="px-4 py-2 border text-center">
-                                    <button
+                                    <Link
                                         className="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 mr-2"
-                                        onClick={() => alert('Redirect to Update Page')}
+                                        to={`/update-campaign/${campaign._id}`}
                                     >
                                         Update
-                                    </button>
+                                    </Link>
                                     <button
                                         className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700"
                                         onClick={() => handleDelete(campaign._id)}

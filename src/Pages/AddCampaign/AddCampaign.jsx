@@ -1,7 +1,10 @@
 import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+
 const AddCampaign = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext)
   const [formData, setFormData] = useState({
     image: '',
@@ -36,9 +39,10 @@ const AddCampaign = () => {
         description: '',
         minDonation: '',
         deadline: '',
-        userEmail: 'user@example.com',
-        userName: 'John Doe',
+        userEmail: user.email,
+        userName: user.displayName,
       });
+      navigate('/my-campaigns');
     } catch (error) {
       Swal.fire('Error', 'Failed to add campaign!', 'error');
     }

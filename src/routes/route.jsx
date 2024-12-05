@@ -10,6 +10,7 @@ import AddCampaign from "../Pages/AddCampaign/AddCampaign"
 import MyCampaigns from "../Pages/MyCampaigns/MyCampaigns"
 import MyDonation from "../Pages/MyDonation/MyDonation"
 import Details from "../Pages/Campaign-details/Details"
+import UpdateCampaign from "../Pages/UpdateCampaign/UpdateCampaign"
 const route = createBrowserRouter([
     {
         path: "/",
@@ -27,6 +28,10 @@ const route = createBrowserRouter([
             {
                 path: 'campaign/:id',
                 element: <PrivateRoute><Details /></PrivateRoute>
+            },
+            {
+                path: 'update-campaign/:id',
+                element: <PrivateRoute><UpdateCampaign /></PrivateRoute>
             },
             {
                 path: 'login',

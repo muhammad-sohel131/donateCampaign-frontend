@@ -34,7 +34,7 @@ const Details = () => {
                 userName: user.displayName,
             };
 
-            const response = await fetch('http://localhost:5000/donate', {
+            const response = await fetch('http://localhost:5000/donation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
