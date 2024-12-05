@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
-
+import { AuthContext } from '../../Provider/AuthProvider';
 const AddCampaign = () => {
+  const { user } = useContext(AuthContext)
   const [formData, setFormData] = useState({
     image: '',
     title: '',
@@ -9,8 +10,8 @@ const AddCampaign = () => {
     description: '',
     minDonation: '',
     deadline: '',
-    userEmail: 'user@example.com', 
-    userName: 'John Doe',          
+    userEmail: user.email, 
+    userName: user.displayName,          
   });
 
   const handleChange = (e) => {
