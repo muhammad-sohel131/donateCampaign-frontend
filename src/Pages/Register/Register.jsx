@@ -113,7 +113,7 @@ const Register = () => {
       <p className="mt-4 text-center text-sm">
         Already have an account? <a href="/login" className="text-blue-500">Login</a>
       </p>
-      <ToastContainer />
+  
     </div>
   );
 };
