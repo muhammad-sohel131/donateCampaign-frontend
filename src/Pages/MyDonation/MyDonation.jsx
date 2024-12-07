@@ -9,7 +9,7 @@ const MyDonation = () => {
     useEffect(() => {
         const fetchDonations = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/myDonations?email=${userEmail}
+                const response = await fetch(`https://donate-campaign-backend.vercel.app/myDonations?email=${userEmail}
                 `);
 
                 if (!response.ok) {

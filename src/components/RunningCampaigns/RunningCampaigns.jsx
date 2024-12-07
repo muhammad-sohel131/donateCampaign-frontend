@@ -9,7 +9,7 @@ const RunningCampaigns = () => {
     useEffect(() => {
         const fetchRunningCampaigns = async () => {
             try {
-                const response = await fetch('http://localhost:5000/running');
+                const response = await fetch('https://donate-campaign-backend.vercel.app/running');
                 if (!response.ok) {
                     throw new Error('Failed to fetch running campaigns');
                 }

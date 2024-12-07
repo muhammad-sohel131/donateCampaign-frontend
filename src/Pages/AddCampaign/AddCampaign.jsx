@@ -24,7 +24,7 @@ const AddCampaign = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/campaigns", {
+      const response = await fetch("https://donate-campaign-backend.vercel.app/campaigns", {
         method: 'POST',
         headers: {
           'content-type':'Application/json'

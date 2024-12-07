@@ -11,7 +11,7 @@ const MyCampaigns = () => {
     useEffect(() => {
         const fetchUserCampaigns = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/myCampaigns?email=${userEmail}`);
+                const response = await fetch(`https://donate-campaign-backend.vercel.app/myCampaigns?email=${userEmail}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch your campaigns');
                 }
@@ -31,7 +31,7 @@ const MyCampaigns = () => {
         if (!confirm) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/campaigns/${id}`, {
+            const response = await fetch(`https://donate-campaign-backend.vercel.app/campaigns/${id}`, {
                 method: 'DELETE',
             });
 
