@@ -21,7 +21,7 @@ const Navbar = () => {
         <div>
           <div
             className={`${isMenuOpen ? "block" : "hidden"
-              } absolute z-10 md:static top-8 md:p-10 bg-blue-800 md:bg-transparent left-[-18px] w-[90%] md:flex md:items-center md:space-x-4`}
+              } absolute z-10 md:static top-8 lg:p-0 p-10 bg-blue-800 md:bg-transparent left-[-18px] lg:w-full w-[90%] md:flex md:items-center md:space-x-4`}
           >
             <NavLink
               to="/"

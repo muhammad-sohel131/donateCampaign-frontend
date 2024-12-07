@@ -27,7 +27,7 @@ const BannerSlider = () => {
                     <div key={slide.id} className="relative h-96">
                         <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white">
-                            <h1 className="text-3xl font-bold">{slide.title}</h1>
+                            <h1 className="text-6xl font-extrabold mb-2 text-center text-white">{slide.title}</h1>
                             <p className="mt-2">{slide.description}</p>
                         </div>
                     </div>

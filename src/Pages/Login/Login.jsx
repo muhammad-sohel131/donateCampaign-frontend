@@ -5,7 +5,7 @@ import auth from "../../firebase/firbase.config";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setUser } = useContext(AuthContext)
@@ -94,7 +94,7 @@ const Login = () => {
         </button>
       </div>
       <p className="mt-4 text-center text-sm">
-        Don't have an account? <a href="/register" className="text-blue-500">Register</a>
+        Don't have an account? <Link to="/register" className="text-blue-500">Register</Link>
       </p>
       <ToastContainer />
     </div>

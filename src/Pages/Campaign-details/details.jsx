@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from '../../Provider/AuthProvider';
+
 const Details = () => {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    
+
     const [campaign, setCampaign] = useState(null);
+    const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
 
     useEffect(() => {
         const fetchCampaign = async () => {
@@ -18,6 +20,13 @@ const Details = () => {
                 }
                 const data = await response.json();
                 setCampaign(data);
+
+                // Check if the campaign deadline has passed
+                const currentDate = new Date();
+                const campaignDeadline = new Date(data.deadline);
+                if (campaignDeadline < currentDate) {
+                    setIsDeadlinePassed(true);
+                }
             } catch (error) {
                 console.error(error);
                 toast.error(error.message || 'Failed to load data');
@@ -28,6 +37,11 @@ const Details = () => {
     }, [id]);
 
     const handleDonate = async () => {
+        if (isDeadlinePassed) {
+            toast.error('The campaign deadline has passed. You cannot donate anymore.');
+            return;
+        }
+
         try {
             const donationData = {
                 campaignId: id,
@@ -59,7 +73,7 @@ const Details = () => {
     if (!campaign) {
         return <p className="text-center text-gray-500 mt-10">Loading campaign details...</p>;
     }
-   
+
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
             <img
@@ -78,12 +92,19 @@ const Details = () => {
                     Deadline: {new Date(campaign.deadline).toLocaleDateString()}
                 </span>
             </div>
-            <button
-                onClick={handleDonate}
-                className="mt-6 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-            >
-                Donate
-            </button>
+
+            {isDeadlinePassed ? (
+                <div className="mt-6 text-center text-red-600 font-semibold">
+                    The campaign deadline has passed. Donations are no longer accepted.
+                </div>
+            ) : (
+                <button
+                    onClick={handleDonate}
+                    className="mt-6 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+                >
+                    Donate
+                </button>
+            )}
         </div>
     );
 };

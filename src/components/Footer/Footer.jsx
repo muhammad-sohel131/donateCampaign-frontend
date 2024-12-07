@@ -2,17 +2,17 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 mt-8">
+    <footer className="bg-gray-800 text-white p-4">
       <div className="container mx-auto text-center">
         <p>&copy; 2024 Crowdcube. All Rights Reserved.</p>
         <p>
-          <a href="/privacy" className="hover:underline">
+          <span className="hover:underline">
             Privacy Policy
-          </a>{" "}
+          </span>{" "}
           |{" "}
-          <a href="/terms" className="hover:underline">
+          <span className="hover:underline">
             Terms of Service
-          </a>
+          </span>
         </p>
       </div>
     </footer>
