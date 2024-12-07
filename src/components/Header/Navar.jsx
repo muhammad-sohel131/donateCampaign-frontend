@@ -1,46 +1,110 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
-  const {user , logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav className="bg-blue-800 text-white p-4">
-      <div className="mx-container flex justify-between items-center">
-      <div className="text-xl font-bold">
-        <Link to="/">Crowdcube</Link>
-      </div>
-      <div className="space-x-4 flex items-center">
-        <Link to="/" className="hover:text-gray-300">Home</Link>
-        <Link to="/campaigns" className="hover:text-gray-300">All Campaigns</Link>
-        {user && (
-          <>
-            <Link to="/add-campaign" className="hover:text-gray-300">Add New Campaign</Link>
-            <Link to="/my-campaigns" className="hover:text-gray-300">My Campaigns</Link>
-            <Link to="/my-donations" className="hover:text-gray-300">My Donations</Link>
-          </>
-        )}
-        {!user ? (
-          <>
-            <Link to="/login" className="hover:text-gray-300">Login</Link>
-            <Link to="/register" className="hover:text-gray-300">Register</Link>
-          </>
-        ) : (
-          <div className="relative flex px-5 py-1 rounded-lg border border-white group">
-            <img
-              src={user.photoURL}
-              alt="User Avatar"
-              className="w-8 h-8 rounded-full cursor-pointer"
-            />
-            <div className="absolute top-8 hidden group-hover:block bg-gray-700 text-white text-sm p-2 rounded shadow-lg">
-              {user.displayName}
-            </div>
-            <button onClick={logOut} className="ml-4 hover:text-red-500">
-              Log out
-            </button>
+      <div className="container relative mx-auto flex justify-between items-center">
+        {/* Logo */}
+        <div className="text-xl font-bold">
+          <NavLink to="/">Crowdcube</NavLink>
+        </div>
+
+        
+
+        {/* Navigation links */}
+        <div>
+          <div
+            className={`${isMenuOpen ? "block" : "hidden"
+              } absolute z-10 md:static top-8 md:p-10 bg-blue-800 md:bg-transparent left-[-18px] w-[90%] md:flex md:items-center md:space-x-4`}
+          >
+            <NavLink
+              to="/"
+              className="block md:inline-block p-2 hover:text-gray-300"
+              activeClassName="text-gray-300 font-bold"
+              exact
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/campaigns"
+              className="block md:inline-block p-2 hover:text-gray-300"
+              activeClassName="text-gray-300 font-bold"
+            >
+              All Campaigns
+            </NavLink>
+            {user && (
+              <>
+                <NavLink
+                  to="/add-campaign"
+                  className="block md:inline-block p-2 hover:text-gray-300"
+                  activeClassName="text-gray-300 font-bold"
+                >
+                  Add New Campaign
+                </NavLink>
+                <NavLink
+                  to="/my-campaigns"
+                  className="block md:inline-block p-2 hover:text-gray-300"
+                  activeClassName="text-gray-300 font-bold"
+                >
+                  My Campaigns
+                </NavLink>
+                <NavLink
+                  to="/my-donations"
+                  className="block md:inline-block p-2 hover:text-gray-300"
+                  activeClassName="text-gray-300 font-bold"
+                >
+                  My Donations
+                </NavLink>
+              </>
+            )}
+            {!user ? (
+              <>
+                <NavLink
+                  to="/login"
+                  className="block md:inline-block p-2 hover:text-gray-300"
+                  activeClassName="text-gray-300 font-bold"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="block md:inline-block p-2 hover:text-gray-300"
+                  activeClassName="text-gray-300 font-bold"
+                >
+                  Register
+                </NavLink>
+              </>
+            ) : (
+              <div className="relative flex items-center group">
+                <img
+                  src={user.photoURL}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full cursor-pointer border border-white"
+                />
+                <div className="absolute top-12 hidden group-hover:block bg-gray-700 text-white text-sm p-2 rounded shadow-lg">
+                  {user.displayName}
+                </div>
+                <button onClick={logOut} className="ml-4 hover:text-red-500">
+                  Log out
+                </button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+
+        {/* Menu button for small screens */}
+        <button
+          className="text-white md:hidden block focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+        </button>
       </div>
     </nav>
   );
