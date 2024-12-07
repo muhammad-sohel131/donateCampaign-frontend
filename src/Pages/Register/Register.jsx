@@ -4,7 +4,7 @@ import auth from "../../firebase/firbase.config";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -113,7 +113,7 @@ const Register = () => {
         </button>
       </form>
       <p className="mt-4 text-center text-sm">
-        Already have an account? <a href="/login" className="text-blue-500">Login</a>
+        Already have an account? <Link to="/login" className="text-blue-500">Login</Link>
       </p>
   
     </div>

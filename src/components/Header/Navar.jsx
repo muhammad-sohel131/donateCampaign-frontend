@@ -5,7 +5,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
   const {user , logOut} = useContext(AuthContext)
   return (
-    <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <nav className="bg-blue-800 text-white p-4">
+      <div className="mx-container flex justify-between items-center">
       <div className="text-xl font-bold">
         <Link to="/">Crowdcube</Link>
       </div>
@@ -39,6 +40,7 @@ const Navbar = () => {
             </button>
           </div>
         )}
+      </div>
       </div>
     </nav>
   );
