@@ -5,9 +5,11 @@ import auth from "../../firebase/firbase.config";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setUser } = useContext(AuthContext)
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,6 +31,7 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       setUser(result.user);
       Swal.fire("Login Successful", "Welcome back!", "success");
+      navigate('/');
     } catch (error) {
       setError(error.message);
       toast.error("Invalid email or password. Please try again.");
@@ -42,6 +45,7 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider);
       Swal.fire("Login Successful", "Welcome back!", "success");
+      navigate("/");
     } catch (error) {
       toast.error("Google login failed. Please try again.");
     }

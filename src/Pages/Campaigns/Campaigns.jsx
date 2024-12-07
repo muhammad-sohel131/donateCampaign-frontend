@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Loading from '../../components/Loading/Loading';
 
 const Campaigns = () => {
     const [campaigns, setCampaigns] = useState([]);
+    const { loading } = useContext(AuthContext)
 
     useEffect(() => {
         const fetchCampaigns = async () => {
@@ -23,6 +26,9 @@ const Campaigns = () => {
         fetchCampaigns();
     }, []);
 
+    if(loading){
+        return <Loading />
+    }
     if (campaigns.length === 0) {
         return <p className="text-center text-gray-500 mt-10">No campaigns available yet...</p>;
     }

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from '../../Provider/AuthProvider';
 const Details = () => {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     
     const [campaign, setCampaign] = useState(null);
 
@@ -44,6 +45,7 @@ const Details = () => {
 
             if (response.ok) {
                 toast.success('Donation successful!');
+                navigate("/campaigns");
             } else {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to donate');
@@ -57,7 +59,7 @@ const Details = () => {
     if (!campaign) {
         return <p className="text-center text-gray-500 mt-10">Loading campaign details...</p>;
     }
-
+   
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
             <img
@@ -67,6 +69,7 @@ const Details = () => {
             />
             <h1 className="text-2xl font-bold text-gray-800 mt-4">{campaign.title}</h1>
             <p className="text-gray-600 mt-2">{campaign.description}</p>
+            <p className="text-gray-600 font-semibold mt-2 capitalize">Type: {campaign.type}</p>
             <div className="flex justify-between items-center mt-4">
                 <span className="text-gray-700 font-semibold">
                     Minimum Donation: ${campaign.minDonation}

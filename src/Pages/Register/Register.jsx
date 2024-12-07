@@ -4,6 +4,7 @@ import auth from "../../firebase/firbase.config";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Register = () => {
     photoURL: "",
     password: "",
   });
-
+  const navigte = useNavigate()
   const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
@@ -49,6 +50,7 @@ const Register = () => {
       
       Swal.fire("Registration Successful", "Welcome to Crowdcube!", "success");
       setFormData({ name: "", email: "", photoURL: "", password: "" });
+      navigte("/")
     } catch (error) {
       setError(error.message);
       toast.error(error.message);
