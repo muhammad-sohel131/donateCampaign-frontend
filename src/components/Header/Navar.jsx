@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaBars, FaTimes } from "react-icons/fa";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,7 +17,7 @@ const Navbar = () => {
           <NavLink to="/">Crowdcube</NavLink>
         </div>
 
-        
+
 
         {/* Navigation links */}
         <div>
@@ -82,13 +84,20 @@ const Navbar = () => {
               </>
             ) : (
               <div className="relative flex items-center group">
-                <img
-                  src={user.photoURL}
-                  alt="User Avatar"
-                  className="w-8 h-8 rounded-full cursor-pointer border border-white"
-                />
-                <div className="absolute top-12 hidden group-hover:block bg-gray-700 text-white text-sm p-2 rounded shadow-lg">
-                  {user.displayName}
+
+                <div className="tooltip-container z-50">
+                  <h1 data-tooltip-id="my-tooltip-1">
+                    <img
+                      src={user.photoURL}
+                      alt="User Avatar"
+                      className="w-8 h-8 rounded-full cursor-pointer border border-white"
+                    />
+                  </h1>
+                  <ReactTooltip
+                    id="my-tooltip-1"
+                    place="bottom"
+                    content={user.displayName}
+                  />
                 </div>
                 <button onClick={logOut} className="ml-4 hover:text-red-500">
                   Log out
