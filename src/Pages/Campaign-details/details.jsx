@@ -14,7 +14,7 @@ const Details = () => {
     useEffect(() => {
         const fetchCampaign = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/campaigns/${id}`);
+                const response = await fetch(`https://donate-campaign-backend.vercel.app/campaign/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch campaign details');
                 }
@@ -49,7 +49,7 @@ const Details = () => {
                 userName: user.displayName,
             };
 
-            const response = await fetch('http://localhost:5000/donation', {
+            const response = await fetch('https://donate-campaign-backend.vercel.app/donation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
