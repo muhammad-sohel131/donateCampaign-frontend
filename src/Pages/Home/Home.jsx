@@ -5,6 +5,7 @@ import WhyDonate from '../../components/WhyDonate/WhyDonate'
 import OurImpact from '../../components/OurImpact/OurImpact'
 import { AuthContext } from '../../Provider/AuthProvider'
 import './Home.css'
+import { Fade, Slide } from "react-awesome-reveal";
 export default function Home() {
   const { isDarkMode, setIsDarkMode } = useContext(AuthContext)
   const handleToggle = () => {
@@ -16,16 +17,21 @@ export default function Home() {
 
       <div className={isDarkMode ? 'dark mt-[-20px] pt-10' : 'light mt-[-20px] pt-10'}>
         <div className='flex justify-center'>
-        <button
-          onClick={handleToggle}
-          className={isDarkMode ? 'mt-6 p-2 rounded bg-white text-black' : 'mt-6 p-2 rounded bg-black text-white'}
-        >
-          Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
-        </button>
+          <button
+            onClick={handleToggle}
+            className={isDarkMode ? 'mt-6 p-2 rounded bg-white text-black' : 'mt-6 p-2 rounded bg-black text-white'}
+          >
+            Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
+          </button>
         </div>
-        <RunningCampaigns />
+        <Fade>
+          <RunningCampaigns />
+        </Fade>
         <WhyDonate />
-        <OurImpact />
+        <Slide>
+          <OurImpact />
+        </Slide>
+
       </div>
     </>
   )

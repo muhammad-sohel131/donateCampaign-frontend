@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const RunningCampaigns = () => {
     const [campaigns, setCampaigns] = useState([]);
     const navigate = useNavigate();

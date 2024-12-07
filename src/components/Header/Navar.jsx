@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-800 text-white p-4">
-      <div className="container relative mx-auto flex justify-between items-center">
+      <div className="mx-container relative mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-xl font-bold">
           <NavLink to="/">Crowdcube</NavLink>
